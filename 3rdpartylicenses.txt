@@ -32,7 +32,7 @@ MIT
 @angular/core
 MIT
 
-@angular/forms
+@angular/flex-layout
 MIT
 
 @angular/material
