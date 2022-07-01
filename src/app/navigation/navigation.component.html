@@ -1,27 +1,37 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="end center">
+    <div fxFlex="60%">My App</div>
+    <div fxFlex="10%" aria-label="Home">Home</div>
+    <div fxFlex="10%" aria-label="Downloads">Downloads</div>
+    <div fxFlex="10%" aria-label="Press Kit">Press Kit</div>
+    <div fxFlex="10%" aria-label="Language">Language
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <span>arqma-web</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>language</mat-icon>
+          <span>English</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>language</mat-icon>
+          <span>Espanol</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>language</mat-icon>
+          <span>Deutsch</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>language</mat-icon>
+            <span>Polski</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>language</mat-icon>
+            <span>Esperanto</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>language</mat-icon>
+            <span>Francaise</span>
+          </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
