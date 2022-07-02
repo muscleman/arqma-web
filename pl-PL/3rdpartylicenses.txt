@@ -29,16 +29,10 @@ THE SOFTWARE.
 @angular/common
 MIT
 
-@angular/compiler
-MIT
-
 @angular/core
 MIT
 
 @angular/flex-layout
-MIT
-
-@angular/localize
 MIT
 
 @angular/material
@@ -70,12 +64,6 @@ THE SOFTWARE.
 MIT
 
 @angular/router
-MIT
-
-@ngx-translate/core
-MIT
-
-@ngx-translate/http-loader
 MIT
 
 rxjs
