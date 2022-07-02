@@ -1,46 +1,47 @@
 <mat-toolbar fxLayout="row" color="primary" class="header">
-    <span fxFlex class="logo">
+    <div fxFlex class="logo">
         <img [src]="logo">
-    </span>
-    <button mat-button *ngFor="let item of menuItems" fxHide.xs [routerLink]="item.link">
-        {{item.label | translate}}
-    </button>
-    <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #dropMenu="matMenu">
-        <ng-container *ngFor="let item of menuItems">
-            <button mat-menu-item  [routerLink]="item.link">
-                <mat-icon class="mr">{{item.icon}}</mat-icon>
-                    {{item.label | translate}}
-            </button>
-            <mat-divider></mat-divider>
-        </ng-container>
-    </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Language" fxHide.xs>
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="switchLang('en')">
-            <mat-icon>language</mat-icon>
-            <span>{{'en'}}</span>
+    </div>
+    <!-- standard menu -->
+    <div fxLayout="row" fxFlex="1 1 100%" fxHide.xs fxLayoutAlign="end" class="links">
+        <button mat-button *ngFor="let item of menuItems" [routerLink]="item.link">
+            {{item.label | translate}}
         </button>
-        <button mat-menu-item (click)="switchLang('pl')">
-            <mat-icon>language</mat-icon>
-            <span>{{'pl'}}</span>
-          </button>
-    </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Language">
+            Languages
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let language of translate.getLangs()" (click)="switchLang(language)">
+                <mat-icon>language</mat-icon>
+                <span>{{ language }}</span>
+            </button>
+        </mat-menu>
+    </div>
 
-    <!-- <span class="form-inline">
-        <select 
-            class="form-control" 
-            #selectedLang 
-            (change)="switchLang(selectedLang.value)">
-          <option *ngFor="let language of translate.getLangs()" 
-            [value]="language"
-            [selected]="language === translate.currentLang">
-            {{ language }}
-          </option>
-        </select>
-      </span> -->
+    <!-- mobile menu -->
+    <div fxFlex fxHide fxShow.xs fxLayoutAlign="end">
+        <button mat-icon-button [matMenuTriggerFor]="dropMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #dropMenu="matMenu">
+            <ng-container *ngFor="let item of menuItems">
+                <button mat-menu-item  [routerLink]="item.link">
+                    <mat-icon class="mr">{{item.icon}}</mat-icon>
+                        {{item.label | translate}}
+                </button>
+                <mat-divider></mat-divider>
+            </ng-container>
+            <button mat-menu-item [matMenuTriggerFor]="languages">Languages</button>
+            <mat-menu #languages="matMenu">
+                <ng-container *ngFor="let language of translate.getLangs()">
+                    <button mat-menu-item (click)="switchLang(language)">
+                        <mat-icon class="mr">language</mat-icon>
+                        {{language | translate}}
+                    </button>
+                </ng-container>
+            </mat-menu>
+        </mat-menu>
+    </div>
+
 </mat-toolbar>

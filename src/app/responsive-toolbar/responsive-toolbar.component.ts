@@ -24,12 +24,12 @@ export class ResponsiveToolbarComponent implements OnInit {
       label: 'Press_Kit',
       icon: 'calendar_today',
       link: ['/presskit']
-    },
-    {
-      label: 'Language',
-      icon: '',
-      link: []
     }
+    // {
+    //   label: 'Language',
+    //   icon: '',
+    //   link: []
+    // }
   ]
 
   constructor(private environmentService: EnvironmentService, public translate: TranslateService) {
