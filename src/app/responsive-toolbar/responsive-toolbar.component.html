@@ -5,16 +5,16 @@
     <!-- standard menu -->
     <div fxLayout="row" fxFlex="1 1 100%" fxHide.xs fxLayoutAlign="end" class="links">
         <button mat-button *ngFor="let item of menuItems" [routerLink]="item.link">
-            {{item.label | translate}}
+            {{item.label}}
         </button>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Language">
-            {{ 'Language' | translate }}
+            {{Languages}}
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item *ngFor="let language of translate.getLangs()" (click)="switchLang(language)">
+            <button mat-menu-item *ngFor="let language of locales" (click)="switchLang(language.localCode)">
                 <mat-icon>language</mat-icon>
-                <span>{{ language }}</span>
+                <span i18n="@@roleKey">{{ language.label }}</span>
             </button>
         </mat-menu>
     </div>
@@ -28,16 +28,16 @@
             <ng-container *ngFor="let item of menuItems">
                 <button mat-menu-item  [routerLink]="item.link">
                     <mat-icon class="mr">{{item.icon}}</mat-icon>
-                        {{item.label | translate}}
+                        {{item.label}}
                 </button>
                 <mat-divider></mat-divider>
             </ng-container>
-            <button mat-menu-item [matMenuTriggerFor]="languages">Languages</button>
+            <button mat-menu-item [matMenuTriggerFor]="languages">{{Languages}}</button>
             <mat-menu #languages="matMenu">
-                <ng-container *ngFor="let language of translate.getLangs()">
-                    <button mat-menu-item (click)="switchLang(language)">
+                <ng-container *ngFor="let language of locales">
+                    <button mat-menu-item (click)="switchLang(language.localCode)">
                         <mat-icon class="mr">language</mat-icon>
-                        {{language | translate}}
+                        {{ language.label }}
                     </button>
                 </ng-container>
             </mat-menu>

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -6,12 +7,19 @@ import { environment } from 'src/environments/environment';
 })
 export class EnvironmentService {
 
-  constructor() { }
+  constructor(@Inject(LOCALE_ID) private locale: string) { }
 
-  public buildImageUrl(imagePath: string): string {
+  public buildBaseImageRef(imagePath: string): string {
     if (imagePath.startsWith('/'))
-      return `${environment.base_href}${imagePath}`
+      return `${environment.base_href}/${this.locale}${imagePath}`
     else
-      return `${environment.base_href}/${imagePath}`
+      return `${environment.base_href}/${this.locale}/${imagePath}`
+  }
+
+  public buildBaseRef(locale: string): string {
+      if (locale.startsWith('/'))
+        return `${environment.base_href}${locale}`
+      else
+        return `${environment.base_href}/${locale}`
   }
 }
