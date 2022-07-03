@@ -26,10 +26,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": [
-              "en-US",
-              "pl-PL"
-            ],
+            "localize": true,
             "outputPath": "dist/arqma-web",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -68,6 +65,12 @@
               ],
               "outputHashing": "all"
             },
+            "en-US": {  
+              "localize": ["en-US"]  
+            },  
+            "pl-PL": {  
+              "localize": ["pl-PL"]  
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -84,6 +87,12 @@
           "configurations": {
             "production": {
               "browserTarget": "arqma-web:build:production"
+            },
+            "en-US": {  
+              "browserTarget": "arqma-web:build:en-US"  
+            },  
+            "pl-PL": {  
+              "browserTarget": "arqma-web:build:pl-PL"  
             },
             "development": {
               "browserTarget": "arqma-web:build:development"

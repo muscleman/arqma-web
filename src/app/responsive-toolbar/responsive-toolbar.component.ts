@@ -36,8 +36,8 @@ export class ResponsiveToolbarComponent implements OnInit {
   ]
 
   locales: Locale[] = [
-    {localCode: this.environmentService.buildBaseRef('en-US/'), label: $localize`:English@@English:English`},
-    {localCode: this.environmentService.buildBaseRef('pl-PL/'), label: $localize`:Polish@@Polish:Polish`}
+    {localCode: this.environmentService.buildBaseRef('/en-US/'), label: $localize`:English@@English:English`},
+    {localCode: this.environmentService.buildBaseRef('/pl-PL/'), label: $localize`:Polish@@Polish:Polish`}
   ]
 
   constructor(private environmentService: EnvironmentService) {

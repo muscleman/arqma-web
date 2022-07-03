@@ -1,4 +1,3 @@
-import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -10,16 +9,26 @@ export class EnvironmentService {
   constructor(@Inject(LOCALE_ID) private locale: string) { }
 
   public buildBaseImageRef(imagePath: string): string {
-    if (imagePath.startsWith('/'))
-      return `${environment.base_href}/${this.locale}${imagePath}`
-    else
-      return `${environment.base_href}/${this.locale}/${imagePath}`
+    let result = environment.base_href
+    if (this.locale && this.locale.startsWith('/')) {
+      result += this.locale
+    } else {
+      result += !!environment.base_href ? `/${this.locale}` : ''
+    }
+    if (imagePath.startsWith('/')) {
+      result += imagePath
+    } else {
+      result += `/${imagePath}`
+    }
+    return result
   }
 
   public buildBaseRef(locale: string): string {
+      let result = ''
       if (locale.startsWith('/'))
-        return `${environment.base_href}${locale}`
+        result = `${environment.base_href}${!!environment.base_href ? locale : ''}`
       else
-        return `${environment.base_href}/${locale}`
+        result = `${environment.base_href}/${!!environment.base_href ? locale : ''}`
+      return result
   }
 }
