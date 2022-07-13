@@ -13,6 +13,11 @@ import { HomeComponent } from './home/home.component';
 import { DownloadsComponent } from './downloads/downloads.component';
 import { PresskitComponent } from './presskit/presskit.component';
 import { FooterComponent } from './footer/footer.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,9 +34,21 @@ import { FooterComponent } from './footer/footer.component';
     BrowserAnimationsModule,
     LayoutModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, `${environment.base_href}/assets/i18n/`, '.json' )
+}
