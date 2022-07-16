@@ -1,5 +1,5 @@
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +24,12 @@ export class EnvironmentService {
   }
 
   public buildBaseRef(locale: string): string {
-      let result = ''
-      if (locale.startsWith('/'))
-        result = `${environment.base_href}${!!environment.base_href ? locale : ''}`
-      else
-        result = `${environment.base_href}/${!!environment.base_href ? locale : ''}`
-      return result
+      // let result = ''
+      // if (locale.startsWith('/'))
+      //   result = `${environment.base_href}${!!environment.base_href ? locale : ''}`
+      // else
+      //   result = `${environment.base_href}/${!!environment.base_href ? locale : ''}`
+      // return result
+      return ""
   }
 }
